@@ -99,6 +99,9 @@ class Coverage(Plugin):
         except KeyError:
             pass
         super(Coverage, self).configure(options, conf)
+        for opt in ["cover_packages", "cover_tests", "cover_inclusive", "cover_html", "cover_xml"]:
+            if getattr(options, opt, None) is not None:
+                self.enabled = True
         if self.enabled:
             try:
                 import coverage
